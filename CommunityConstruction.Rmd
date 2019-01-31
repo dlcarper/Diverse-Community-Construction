@@ -1,0 +1,113 @@
+---
+title: "Community Construction from Genomes"
+author: "Dana L. Carper"
+date: "1/30/2019"
+output: 
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(data.table)
+library(ggplot2)
+library(captioner)
+fig_nums <- captioner(prefix = "Fig.")
+fig.1_cap <- fig_nums(name = "fig_1", 
+                        caption = "")
+fig.2_cap <- fig_nums(name = "fig_2", 
+                        caption = "")
+fig.3_cap <- fig_nums(name = "fig_3", 
+                        caption = "")
+fig.4_cap <- fig_nums(name = "fig_4", 
+                        caption = "")
+```
+# Summary
+
+These are a collection of scripts used to construct the diverse community that can be identified using Illumina sequencing. These scripts are for the Illumina region 515F-806R and can not be used if sequences contain N characters.
+
+## JGI Genomes
+
+First the genomes from the culture community were downloaded from JGI and were decompressed using the following script. 
+
+```{bash eval=FALSE, echo=TRUE}
+./untar.sh
+```
+
+## Extract 16S sequences from genomes
+
+The following script will extract all of the 16S sequences from all genomes. In each folder for the genomes it will create a file with the genomeID_16s.fasta. It will also create files with genome IDs that have no 16S annotated or that are less than 1300bp long..
+
+
+```{bash eval=FALSE, echo=TRUE}
+python3 EXTRACT_16S_JGI_GENOMES.py */*.gff
+```
+
+## Get 16S of short or not annotated from sanger sequenced strains
+
+Then the following script was used to compare the length of the sequences that were short or non-existent in the genomes to the sanger sequences and if the sange sequences is longer replace the fasta file with it.
+
+```{bash eval=FALSE, echo=TRUE}
+python3 Short_16S.py
+```
+
+## Combine all sequences into FASTA file
+
+All fasta sequences were combined using cat.
+
+```{bash eval=FALSE, echo-TRUE}
+cat */*_16s.fasta > Merged_16S.fasta
+```
+
+## Extract regions used for Illumina Sequencing
+
+The region (515f-806r) was extracted from each of the sequences. All sequences are output in the same orientation with the primer sequence included so the alignment will be easier. Any sequences that the primers can not be found in are output into a file called needs_resequencing. 
+
+```{bash eval=FALSE, echo=TRUE}
+python3 FindPrimerMatches.py Merged_16S.fasta
+```
+
+## Alignment of 16S region
+
+The region was aligned using MAFFT implemented in the qiime2 (v.2018-11). Using the following commands:
+
+  
+```{bash eval=FALSE, echo=TRUE}
+conda activate qiime2-2018.11
+qiime tools import \
+  --type 'FeatureData[Sequence]' \
+  --input-path 16S_region.fasta \
+  --output-path 16S_region.qza
+qiime alignment mafft \
+  --i-sequences 16S_region.qza \
+  --o-alignment 16s_region_alignment_mafft.qza
+qiime tools export \
+  --input-path 16s_region_alignment_mafft.qza \
+  --output-path alignment 
+conda deactivate
+mv alignment/aligned-dna-sequences.fasta .
+```
+
+## Construct Community
+
+The following script takes the imput alignment file that was generated and creates a community based on the users edit distance or pairwise distance the user wants. The community is constructed by first identifying the genome that has the smallest number of similar sequences at the user inputed edit distance. That genome that was previously identified is the starting community. The script then cycles through the rest of the genome ids and checks if they are similar to the members of the community at the user specified edit distance or below. If the genome IDs are not part of the community or similar to them it adds the one with the least amount of similar sequences to the commmunity. This continues until there are no more community members to add. The script then combines the information from a file called strain_info.txt to add the strain identifiers to the genome ids. The code is commented at almost each line to help with any issues. 
+
+
+```{bash,echo=TRUE,eval=FALSE}
+python3 CommunityConstruction.py 3
+```
+
+```{r echo=FALSE,results='asis'}
+library(knitr)
+library(kableExtra)
+table<-read.table("Community_ED3.txt", header=FALSE, sep="\t")
+names(table)[names(table) == "V1"] <- "IMG.Genome.ID"
+names(table)[names(table) == "V2"] <- "Strain"
+kable(table,caption="Community") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F) %>%
+  scroll_box(width = "600px", height = "200px")
+```
+

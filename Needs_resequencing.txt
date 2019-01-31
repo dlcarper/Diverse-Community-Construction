@@ -1,0 +1,21 @@
+IMG Genome ID	FW Primer	RV Primer	Length	Genome Name / Sample Name	Strain
+2582581865	None	227	864	Rhizobium sp. CF258	CF258
+2609459615	None	245	931	Methylobacterium sp. AP11	AP11
+2609459643	None	None	227	Janthinobacterium sp. OK676	OK676
+2609459710	None	None	135	Pseudomonas sp. OK272	OK272
+2609459712	None	None	100	Pseudomonas sp. OK602	OK602
+2609459726	None	None	165	Arthrobacter sp. OV118	OV118
+2609459727	None	None	230	Duganella sp. OV458	OV458
+2609459762	None	245	915	Dyadobacter sp. SG02	SG02
+2615840537	None	242	904	Bacillus sp. BC15	BC15
+2615840538	None	None	275	Bacillus sp. OK634	OK634
+2615840539	None	None	280	Bacillus sp. OK061	OK061
+2615840604	None	None	240	Cohnella sp. OV330	OV330
+2615840635	None	None	72	Streptomyces sp. YR375	YR375
+2615840636	None	None	90	Paraburkholderia sp. YR281	YR281
+2616644976	None	None	331	Paenibacillus sp. OV031	OV031
+2690315629	None	None	279	Paenibacillus sp. OV219	OV219
+2690315656	None	244	877	Paenibacillus sp. BC26	BC26
+2795386103	521	None	567	Tumebacillus sp. BK434	BK434
+2799112226	None	None	291	Paenibacillus sp. BK033	BK033
+2799112248	None	None	319	Lysinibacillus sp. BK089	BK089
