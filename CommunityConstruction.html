@@ -253,7 +253,7 @@ mv alignment/aligned-dna-sequences.fasta .</code></pre>
 <div id="construct-community" class="section level2">
 <h2><span class="header-section-number">1.7</span> Construct Community</h2>
 <p>The following script takes the imput alignment file that was generated and creates a community based on the users edit distance or pairwise distance the user wants. The community is constructed by first identifying the genome that has the smallest number of similar sequences at the user inputed edit distance. That genome that was previously identified is the starting community. The script then cycles through the rest of the genome ids and checks if they are similar to the members of the community at the user specified edit distance or below. If the genome IDs are not part of the community or similar to them it adds the one with the least amount of similar sequences to the commmunity. This continues until there are no more community members to add. The script then combines the information from a file called strain_info.txt to add the strain identifiers to the genome ids. The code is commented at almost each line to help with any issues.</p>
-<pre class="bash"><code>python3 CommunityConstruction.py 3</code></pre>
+<pre class="bash"><code>python3 CommunityConstruction_winputCommunity.py -i aligned-dna-sequences.fasta -D 3 -C PD10Genomes_exchange.txt </code></pre>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:200px; overflow-x: scroll; width:600px; ">
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -272,6 +272,14 @@ Strain
 <tbody>
 <tr>
 <td style="text-align:right;">
+2757320445
+</td>
+<td style="text-align:left;">
+Acidovorax sp. OV235
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 2615840642
 </td>
 <td style="text-align:left;">
@@ -280,18 +288,18 @@ Acinetobacter sp. YR461
 </tr>
 <tr>
 <td style="text-align:right;">
-2690315658
-</td>
-<td style="text-align:left;">
-Agromyces sp. CF514
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2757320520
 </td>
 <td style="text-align:left;">
 Agromyces sp. OV415
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2757320537
+</td>
+<td style="text-align:left;">
+Agromyces sp. OV429
 </td>
 </tr>
 <tr>
@@ -344,18 +352,18 @@ Asticcacaulis sp. CF398
 </tr>
 <tr>
 <td style="text-align:right;">
-2799112266
+2799112227
 </td>
 <td style="text-align:left;">
-Bacillus sp. BK450
+Bacillus sp. BK100
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2687453793
+2799112205
 </td>
 <td style="text-align:left;">
-Bacillus sp. OK838
+Bacillus sp. BK245
 </td>
 </tr>
 <tr>
@@ -368,18 +376,18 @@ Bacillus sp. OV166
 </tr>
 <tr>
 <td style="text-align:right;">
-2738543017
-</td>
-<td style="text-align:left;">
-Bacillus sp. OV186
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2684622999
 </td>
 <td style="text-align:left;">
 Bacillus sp. OV194
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2693429828
+</td>
+<td style="text-align:left;">
+Bacillus sp. OV322
 </td>
 </tr>
 <tr>
@@ -416,18 +424,18 @@ Bradyrhizobium sp. CF659
 </tr>
 <tr>
 <td style="text-align:right;">
-2510917027
+2512564013
 </td>
 <td style="text-align:left;">
-Brevibacillus sp. CF112
+Brevibacillus sp. BC25
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2582581280
+2510917020
 </td>
 <td style="text-align:left;">
-Caulobacter henricii CF287
+Caulobacter sp. AP07
 </td>
 </tr>
 <tr>
@@ -480,10 +488,10 @@ Chitinophaga sp. YR627
 </tr>
 <tr>
 <td style="text-align:right;">
-2582581281
+2582581282
 </td>
 <td style="text-align:left;">
-Chryseobacterium sp. CF284
+Chryseobacterium sp. CF299
 </td>
 </tr>
 <tr>
@@ -496,18 +504,18 @@ Chryseobacterium sp. CF356
 </tr>
 <tr>
 <td style="text-align:right;">
-2582581873
-</td>
-<td style="text-align:left;">
-Chryseobacterium sp. OV259
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2585428045
 </td>
 <td style="text-align:left;">
 Chryseobacterium sp. OV705
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2585428095
+</td>
+<td style="text-align:left;">
+Chryseobacterium sp. YR005
 </td>
 </tr>
 <tr>
@@ -528,10 +536,10 @@ Cohnella sp. OV312
 </tr>
 <tr>
 <td style="text-align:right;">
-2609459734
+2609459737
 </td>
 <td style="text-align:left;">
-Collimonas sp. OK307
+Collimonas sp. OK607
 </td>
 </tr>
 <tr>
@@ -544,6 +552,14 @@ Cupriavidus sp. OV038
 </tr>
 <tr>
 <td style="text-align:right;">
+2616644843
+</td>
+<td style="text-align:left;">
+Curtobacterium sp. YR515
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 2690315612
 </td>
 <td style="text-align:left;">
@@ -552,10 +568,18 @@ Devosia sp. YR412
 </tr>
 <tr>
 <td style="text-align:right;">
-2687453813
+2799112264
 </td>
 <td style="text-align:left;">
-Duganella sp. CF458
+Duganella sp. BK054
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2616644845
+</td>
+<td style="text-align:left;">
+Duganella sp. CF402
 </td>
 </tr>
 <tr>
@@ -564,14 +588,6 @@ Duganella sp. CF458
 </td>
 <td style="text-align:left;">
 Duganella sp. CF517
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2757320446
-</td>
-<td style="text-align:left;">
-Duganella sp. GV067
 </td>
 </tr>
 <tr>
@@ -592,10 +608,10 @@ Dyella sp. YR388
 </tr>
 <tr>
 <td style="text-align:right;">
-2738543014
+2738541273
 </td>
 <td style="text-align:left;">
-Elizabethkingia sp. YR191
+Elizabethkingia sp. YR214
 </td>
 </tr>
 <tr>
@@ -624,10 +640,10 @@ Filimonas sp. YR581
 </tr>
 <tr>
 <td style="text-align:right;">
-2615840595
+2693429823
 </td>
 <td style="text-align:left;">
-Flavobacterium sp. FV08
+Flavobacterium sp. CF108
 </td>
 </tr>
 <tr>
@@ -640,10 +656,10 @@ Flavobacterium sp. GV029
 </tr>
 <tr>
 <td style="text-align:right;">
-2738541279
+2738543007
 </td>
 <td style="text-align:left;">
-Flavobacterium sp. GV069
+Flavobacterium sp. GV063
 </td>
 </tr>
 <tr>
@@ -652,6 +668,14 @@ Flavobacterium sp. GV069
 </td>
 <td style="text-align:left;">
 Herbaspirillum sp. CF444
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2585428094
+</td>
+<td style="text-align:left;">
+Herbiconiux sp. YR403
 </td>
 </tr>
 <tr>
@@ -700,14 +724,6 @@ Larkinella sp. BK230
 </td>
 <td style="text-align:left;">
 Leifsonia sp. BK543
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2758568661
-</td>
-<td style="text-align:left;">
-Leifsonia sp. OV430
 </td>
 </tr>
 <tr>
@@ -776,10 +792,10 @@ Methylobacterium sp. BK227
 </tr>
 <tr>
 <td style="text-align:right;">
-2738541281
+2738543032
 </td>
 <td style="text-align:left;">
-Methylobacterium sp. GV094
+Methylobacterium sp. GV104
 </td>
 </tr>
 <tr>
@@ -804,14 +820,6 @@ Microbacterium sp. CF046
 </td>
 <td style="text-align:left;">
 Microbacterium sp. CF332
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2758568040
-</td>
-<td style="text-align:left;">
-Microterricola sp. OV434
 </td>
 </tr>
 <tr>
@@ -856,10 +864,10 @@ Mycobacterium sp. BK086
 </tr>
 <tr>
 <td style="text-align:right;">
-2738541264
+2738541356
 </td>
 <td style="text-align:left;">
-Mycobacterium sp. OK889
+Mycobacterium sp. OK887
 </td>
 </tr>
 <tr>
@@ -928,10 +936,18 @@ Novosphingobium sp. GV013
 </tr>
 <tr>
 <td style="text-align:right;">
-2757320421
+2738543033
 </td>
 <td style="text-align:left;">
-Novosphingobium sp. GV076
+Novosphingobium sp. GV064
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2585428059
+</td>
+<td style="text-align:left;">
+Paenibacillus chondroitinus OK414
 </td>
 </tr>
 <tr>
@@ -952,18 +968,18 @@ Paenibacillus sp. BK736
 </tr>
 <tr>
 <td style="text-align:right;">
-2690315662
-</td>
-<td style="text-align:left;">
-Paenibacillus sp. CF095
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2690315634
 </td>
 <td style="text-align:left;">
 Paenibacillus sp. CF384
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2690315677
+</td>
+<td style="text-align:left;">
+Paenibacillus sp. OK076
 </td>
 </tr>
 <tr>
@@ -984,14 +1000,6 @@ Paenibacillus sp. PDC88
 </tr>
 <tr>
 <td style="text-align:right;">
-2615840634
-</td>
-<td style="text-align:left;">
-Paenibacillus sp. YR247
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2738541299
 </td>
 <td style="text-align:left;">
@@ -1008,10 +1016,10 @@ Pantoea sp. OV426
 </tr>
 <tr>
 <td style="text-align:right;">
-2690315619
+2511231025
 </td>
 <td style="text-align:left;">
-Pantoea sp. YR525
+Pantoea sp. YR343
 </td>
 </tr>
 <tr>
@@ -1032,14 +1040,6 @@ Paraburkholderia sp. OK233
 </tr>
 <tr>
 <td style="text-align:right;">
-2711768653
-</td>
-<td style="text-align:left;">
-Paraburkholderia sp. OK806
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2757320513
 </td>
 <td style="text-align:left;">
@@ -1048,10 +1048,26 @@ Paraburkholderia sp. PDC91
 </tr>
 <tr>
 <td style="text-align:right;">
-2738543023
+2615840633
 </td>
 <td style="text-align:left;">
-Pedobacter sp. OK628
+Paraburkholderia sp. YR520
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2738541302
+</td>
+<td style="text-align:left;">
+Pedobacter sp. CF074
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2609459674
+</td>
+<td style="text-align:left;">
+Pedobacter sp. OK626
 </td>
 </tr>
 <tr>
@@ -1064,14 +1080,6 @@ Pedobacter sp. YR016
 </tr>
 <tr>
 <td style="text-align:right;">
-2739367663
-</td>
-<td style="text-align:left;">
-Pedobacter sp. YR510
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2738541337
 </td>
 <td style="text-align:left;">
@@ -1080,18 +1088,18 @@ Pelomonas sp. BT06
 </tr>
 <tr>
 <td style="text-align:right;">
-2511231027
+2687453676
 </td>
 <td style="text-align:left;">
-Phyllobacterium sp. YR531
+Phyllobacterium sp. OV277
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2690315616
+2511231027
 </td>
 <td style="text-align:left;">
-Phyllobacterium sp. YR620
+Phyllobacterium sp. YR531
 </td>
 </tr>
 <tr>
@@ -1112,10 +1120,10 @@ Pleomorphomonas sp. CF100
 </tr>
 <tr>
 <td style="text-align:right;">
-2609459740
+2615840640
 </td>
 <td style="text-align:left;">
-Polaromonas sp. OV174
+Polaromonas sp. YR568
 </td>
 </tr>
 <tr>
@@ -1136,6 +1144,14 @@ Pseudomonas sp. GM16
 </tr>
 <tr>
 <td style="text-align:right;">
+2511231006
+</td>
+<td style="text-align:left;">
+Pseudomonas sp. GM17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 2511231014
 </td>
 <td style="text-align:left;">
@@ -1144,18 +1160,10 @@ Pseudomonas sp. GM48
 </tr>
 <tr>
 <td style="text-align:right;">
-2511231024
+2738543016
 </td>
 <td style="text-align:left;">
-Pseudomonas sp. GM84
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2738541271
-</td>
-<td style="text-align:left;">
-Pseudomonas sp. GV021
+Pseudomonas sp. GV012
 </td>
 </tr>
 <tr>
@@ -1168,10 +1176,10 @@ Pseudomonas sp. OV144
 </tr>
 <tr>
 <td style="text-align:right;">
-2757320530
+2684623003
 </td>
 <td style="text-align:left;">
-Pseudomonas sp. OV508
+Pseudomonas sp. OV546
 </td>
 </tr>
 <tr>
@@ -1216,10 +1224,10 @@ Pusillimonas sp. YR330
 </tr>
 <tr>
 <td style="text-align:right;">
-2585427591
+2585427592
 </td>
 <td style="text-align:left;">
-Rahnella aquatilis OV744
+Rahnella aquatilis OV588
 </td>
 </tr>
 <tr>
@@ -1232,26 +1240,26 @@ Ralstonia sp. GV074
 </tr>
 <tr>
 <td style="text-align:right;">
-2582581316
-</td>
-<td style="text-align:left;">
-Rhizobium rhizogenes OK036
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2795386131
-</td>
-<td style="text-align:left;">
-Rhizobium sp. BK251
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2795386128
 </td>
 <td style="text-align:left;">
 Rhizobium sp. BK418
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2799112241
+</td>
+<td style="text-align:left;">
+Rhizobium sp. BK696
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2510917030
+</td>
+<td style="text-align:left;">
+Rhizobium sp. CF142
 </td>
 </tr>
 <tr>
@@ -1304,10 +1312,10 @@ Rhodococcus sp. OK270
 </tr>
 <tr>
 <td style="text-align:right;">
-2738541308
+2738543005
 </td>
 <td style="text-align:left;">
-Rhodococcus sp. OK551
+Rhodococcus sp. OK519
 </td>
 </tr>
 <tr>
@@ -1320,18 +1328,18 @@ Sphingobium sp. AP49
 </tr>
 <tr>
 <td style="text-align:right;">
-2687453790
-</td>
-<td style="text-align:left;">
-Sphingobium sp. AP50
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 2687453679
 </td>
 <td style="text-align:left;">
 Sphingobium sp. YR657
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2687453792
+</td>
+<td style="text-align:left;">
+Sphingobium sp. YR768
 </td>
 </tr>
 <tr>
@@ -1400,18 +1408,18 @@ Stenotrophomonas sp. CF319
 </tr>
 <tr>
 <td style="text-align:right;">
-2693429819
+2695420952
 </td>
 <td style="text-align:left;">
-Stenotrophomonas sp. YR347
+Stenotrophomonas sp. YR399
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2582581312
+2582581314
 </td>
 <td style="text-align:left;">
-Streptomyces atratus OK008
+Streptomyces mirabilis YR139
 </td>
 </tr>
 <tr>
@@ -1424,10 +1432,10 @@ Streptomyces sp. BK161
 </tr>
 <tr>
 <td style="text-align:right;">
-2795386106
+2795386122
 </td>
 <td style="text-align:left;">
-Streptomyces sp. BK205
+Streptomyces sp. BK208
 </td>
 </tr>
 <tr>
@@ -1436,14 +1444,6 @@ Streptomyces sp. BK205
 </td>
 <td style="text-align:left;">
 Streptomyces sp. BK340
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2795386134
-</td>
-<td style="text-align:left;">
-Streptomyces sp. BK387
 </td>
 </tr>
 <tr>
@@ -1464,34 +1464,34 @@ Streptomyces sp. BK674
 </tr>
 <tr>
 <td style="text-align:right;">
-2609459751
+2615840540
 </td>
 <td style="text-align:left;">
-Tardiphaga sp. OK245
+Streptomyces sp. OK210
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2738543013
+2609459765
 </td>
 <td style="text-align:left;">
-Variovorax sp. BT01
+Tardiphaga sp. OK246
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2690315635
+2513020051
 </td>
 <td style="text-align:left;">
-Variovorax sp. OK212
+Variovorax sp. CF313
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2687453678
+2690315647
 </td>
 <td style="text-align:left;">
-Variovorax sp. OV700
+Variovorax sp. YR216
 </td>
 </tr>
 <tr>

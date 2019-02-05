@@ -97,13 +97,13 @@ The following script takes the imput alignment file that was generated and creat
 
 
 ```{bash,echo=TRUE,eval=FALSE}
-python3 CommunityConstruction.py 3
+python3 CommunityConstruction_winputCommunity.py -i aligned-dna-sequences.fasta -D 3 -C PD10Genomes_exchange.txt 
 ```
 
 ```{r echo=FALSE,results='asis'}
 library(knitr)
 library(kableExtra)
-table<-read.table("Community_ED3.txt", header=FALSE, sep="\t")
+table<-read.table("Community_ED3_newBosea.txt", header=FALSE, sep="\t")
 names(table)[names(table) == "V1"] <- "IMG.Genome.ID"
 names(table)[names(table) == "V2"] <- "Strain"
 kable(table,caption="Community") %>%
