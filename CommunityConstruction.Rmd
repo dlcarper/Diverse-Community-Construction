@@ -103,7 +103,7 @@ python3 CommunityConstruction_winputCommunity.py -i aligned-dna-sequences.fasta 
 ```{r echo=FALSE,results='asis'}
 library(knitr)
 library(kableExtra)
-table<-read.table("Community_ED3_newBosea.txt", header=FALSE, sep="\t")
+table<-read.table("Community_ED3_CF476.txt", header=FALSE, sep="\t")
 names(table)[names(table) == "V1"] <- "IMG.Genome.ID"
 names(table)[names(table) == "V2"] <- "Strain"
 kable(table,caption="Community") %>%
